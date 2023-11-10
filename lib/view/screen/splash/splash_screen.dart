@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_d_anurag_17864/view/screen/login/login_screen.dart';
 import '../home/home_page.dart';
@@ -37,10 +38,13 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SizedBox(
-          height: 300,
-          child: Image.network(
-              "https://i.pinimg.com/originals/24/63/5d/24635d14bd8cd6250c642ad6393f97ef.gif"),
+        child: Text(
+          "Must Buy Amazing",
+          style: GoogleFonts.sofia(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

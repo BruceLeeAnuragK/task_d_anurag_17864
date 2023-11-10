@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task_d_anurag_17864/Model/user_model.dart';
 import 'package:task_d_anurag_17864/controller/product_controller.dart';
 import 'package:task_d_anurag_17864/helper/api_helper.dart';
+
+import '../../../controller/cart_controller.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,6 +15,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProductController controller = Get.put(ProductController());
+    CartController cartController = Get.put(CartController());
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -40,7 +45,9 @@ class HomePage extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed("/CartPage");
+            },
             icon: Icon(
               Icons.shopping_cart,
               color: Colors.white,
@@ -48,8 +55,8 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: StreamBuilder(
-        stream: controller.addProducts(),
+      body: FutureBuilder(
+        future: APIHelper.apiHelper.getProduct(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return GridView.builder(
@@ -58,7 +65,7 @@ class HomePage extends StatelessWidget {
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 5,
                 childAspectRatio: MediaQuery.of(context).size.width /
-                    (MediaQuery.of(context).size.height / 1.7),
+                    (MediaQuery.of(context).size.height / 1.5),
               ),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -90,8 +97,8 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                             image: DecorationImage(
-                              image: NetworkImage(
-                                  controller.allProduct[index].thumbnail),
+                              image:
+                                  NetworkImage(snapshot.data![index].thumbnail),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -104,14 +111,14 @@ class HomePage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              controller.allProduct[index].title,
+                              snapshot.data![index].title,
                               style: TextStyle(
                                 color: Colors.green.shade900,
                                 fontSize: 12,
                               ),
                             ),
                             Text(
-                              controller.allProduct[index].brand,
+                              snapshot.data![index].brand,
                               style: TextStyle(
                                 color: Colors.green,
                                 fontSize: 10,
@@ -132,7 +139,8 @@ class HomePage extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {
-                              Get.toNamed("/CartPage");
+                              cartController.addToCart(
+                                  product: snapshot.data![index]);
                             },
                             icon: Icon(
                               Icons.shopping_cart_outlined,

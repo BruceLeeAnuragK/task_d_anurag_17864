@@ -31,19 +31,19 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: "splash_screen",
+      initialRoute: "/",
       getPages: [
         GetPage(
           name: "/",
           page: () => SplashScreen(),
         ),
         GetPage(
-          name: "/HomePage",
-          page: () => HomePage(),
-        ),
-        GetPage(
           name: "/LoginPage",
           page: () => LoginScreen(),
+        ),
+        GetPage(
+          name: "/HomePage",
+          page: () => HomePage(),
         ),
         GetPage(
           name: "/DetailPage",
