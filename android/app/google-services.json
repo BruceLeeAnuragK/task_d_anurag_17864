@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1050013208523",
+    "project_id": "re-pr2-anurag-1786",
+    "storage_bucket": "re-pr2-anurag-1786.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1050013208523:android:c345c0a89b9c71c554704e",
+        "android_client_info": {
+          "package_name": "com.example.task_d_anurag_17864"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJKrPSsYEs4VetCzauJfNi0I_CnOh1m3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
